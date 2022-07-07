@@ -16,6 +16,23 @@ const level1 = new Level(
         new Coins(800, 200),
         new Coins(760, 250),
 
+        new Coins(1800, 250),
+        new Coins(1840, 200),
+        new Coins(1880, 150),
+        new Coins(1920, 100),
+        new Coins(1980, 100),
+        new Coins(1940, 150),
+        new Coins(1900, 200),
+        new Coins(1860, 250),
+
+        new Coins(2500, 250),
+        new Coins(2520, 200),
+        new Coins(2545, 150),
+        new Coins(2570, 100),
+        new Coins(2595, 150),
+        new Coins(2620, 200),
+        new Coins(2640, 250),
+
 
     ], [
         new BackgroundObject('img/5_background/layers/air.png', -719),

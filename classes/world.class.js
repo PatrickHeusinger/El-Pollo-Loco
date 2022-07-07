@@ -7,6 +7,9 @@ class World {
     canvas;
     keyboard;
     cameraX = 0;
+    statusBar = new StatusBar();
+    bottleBar = new BottleBar();
+    coinBar = new CoinBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -25,13 +28,17 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                     if (this.character.isColliding(enemy)) {
-                        console.log('Damage!');
+
+                        this.character.energy -= 5;
+                        this.character.isHit();
+                        this.statusBar.setPercent(this.character.energy);
                     }
                 }
 
             );
         }, 100);
     }
+
 
     /*  if(charachter.x + charachter.width > chicken.x &&
             charachter.y + charachter.height > chicken.x &&
@@ -41,18 +48,25 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.cameraX, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
 
+
+
+        this.addObjectsToMap(this.level.coins);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.coins);
+
+        this.ctx.translate(-this.cameraX, 0);
+        this.addToMap(this.statusBar);
+        this.addToMap(this.bottleBar);
+        this.addToMap(this.coinBar);
+        this.ctx.translate(this.cameraX, 0);
 
 
-        this.ctx.translate(-this.cameraX, -0);
+        this.ctx.translate(-this.cameraX, 0);
 
         let self = this;
         requestAnimationFrame(function() {

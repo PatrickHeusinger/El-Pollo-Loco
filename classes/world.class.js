@@ -14,11 +14,30 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this;
     }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                    if (this.character.isColliding(enemy)) {
+                        console.log('Damage!');
+                    }
+                }
+
+            );
+        }, 100);
+    }
+
+    /*  if(charachter.x + charachter.width > chicken.x &&
+            charachter.y + charachter.height > chicken.x &&
+            charachter.x < chicken.x &&
+            charachter.y < chicken + chicken.height
+            )*/
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -30,6 +49,8 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
+
 
         this.ctx.translate(-this.cameraX, -0);
 
@@ -48,15 +69,26 @@ class World {
 
     addToMap(move) {
         if (move.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(move.width, 0);
-            this.ctx.scale(-1, 1);
-            move.x = move.x * -1;
+            this.flipImage(move);
         }
-        this.ctx.drawImage(move.img, move.x, move.y, move.width, move.height);
+
+        move.draw(this.ctx);
+        move.drawFrame(this.ctx);
+
         if (move.otherDirection) {
-            move.x = move.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(move);
         }
+    }
+
+    flipImage(move) {
+        this.ctx.save();
+        this.ctx.translate(move.width, 0);
+        this.ctx.scale(-1, 1);
+        move.x = move.x * -1;
+    }
+
+    flipImageBack(move) {
+        move.x = move.x * -1;
+        this.ctx.restore();
     }
 }

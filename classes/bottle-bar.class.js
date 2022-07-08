@@ -17,6 +17,10 @@ class BottleBar extends StatusBar {
         this.setPercent(0);
     };
 
-
+    collectBottles() {
+        if (this.percent < 100) {
+            this.percent += 20;
+        }
+    }
 
 };

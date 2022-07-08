@@ -41,10 +41,11 @@ const level1 = new Level(
         new Coins(2620, 200),
         new Coins(2640, 250),
     ], [
-        new Bottels(900, 80),
-        new Bottels(1300, 80),
-        new Bottels(1700, 80),
-        new Bottels(2100, 80),
+        new Bottles(900, 350),
+        new Bottles(1300, 360),
+        new Bottles(1600, 350),
+        new Bottles(2100, 380),
+        new Bottles(2600, 380),
     ], [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),

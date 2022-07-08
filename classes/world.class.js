@@ -10,7 +10,8 @@ class World {
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
-    throwableObjects = [new ThrowableObject()];
+    throwableObjects = [];
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -21,51 +22,63 @@ class World {
         this.checkCollisions();
         this.coinsCollision();
         this.bottleCollision();
+        this.checkIteration();
+
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    checkIteration() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                    if (this.character.isColliding(enemy)) {
-                        this.character.energy -= 5;
-                        this.character.isHit();
-                        this.statusBar.setPercent(this.character.energy);
-                    }
-                }
-
-            );
+            this.checkCollisions();
+            this.coinsCollision();
+            this.bottleCollision();
+            this.checkThrowObjects();
         }, 100);
     }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.energy -= 5;
+                this.character.isHit();
+                this.statusBar.setPercent(this.character.energy);
+            }
+        });
+    };
+
 
     coinsCollision() {
-        setInterval(() => {
-            this.level.coins.forEach((coins, index) => {
-                if (this.character.isColliding(coins)) {
-                    this.coinBar.collectCoin();
-                    this.coinBar.setPercent(this.coinBar.percent);
-                    this.level.coins.splice(index, 1);
+        this.level.coins.forEach((coins, index) => {
+            if (this.character.isColliding(coins)) {
+                this.coinBar.collectCoin();
+                this.coinBar.setPercent(this.coinBar.percent);
+                this.level.coins.splice(index, 1);
 
-                }
-            });
-        }, 100);
-    }
+            }
+        });
+    };
+
 
     bottleCollision() {
-        setInterval(() => {
-            this.level.bottles.forEach((bottles, index) => {
-                if (this.character.isColliding(bottles)) {
-                    this.bottleBar.collectBottles();
-                    this.bottleBar.setPercent(this.bottleBar.percent);
-                    this.level.bottles.splice(index, 1);
+        this.level.bottles.forEach((bottles, index) => {
+            if (this.character.isColliding(bottles)) {
+                this.bottleBar.collectBottles();
+                this.bottleBar.setPercent(this.bottleBar.percent);
+                this.level.bottles.splice(index, 1);
 
-                }
-            });
-        }, 100);
-    }
+            };
+        });
+    };
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 250);
+            this.throwableObjects.push(bottle);
+        };
+    };
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -73,20 +86,18 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
 
+        this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.throwableObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-
 
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
         this.ctx.translate(this.cameraX, 0);
-
 
         this.ctx.translate(-this.cameraX, 0);
 
@@ -96,35 +107,37 @@ class World {
 
         });
 
-    }
+    };
+
+
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj)
         })
-    }
+    };
+
 
     addToMap(move) {
         if (move.otherDirection) {
             this.flipImage(move);
         }
-
         move.draw(this.ctx);
         move.drawFrame(this.ctx);
-
         if (move.otherDirection) {
             this.flipImageBack(move);
-        }
-    }
+        };
+    };
 
     flipImage(move) {
         this.ctx.save();
         this.ctx.translate(move.width, 0);
         this.ctx.scale(-1, 1);
         move.x = move.x * -1;
-    }
+    };
+
 
     flipImageBack(move) {
         move.x = move.x * -1;
         this.ctx.restore();
-    }
-}
+    };
+};

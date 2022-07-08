@@ -18,6 +18,7 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        this.coinsCollision();
     }
 
     setWorld() {
@@ -28,7 +29,6 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                     if (this.character.isColliding(enemy)) {
-
                         this.character.energy -= 5;
                         this.character.isHit();
                         this.statusBar.setPercent(this.character.energy);
@@ -39,12 +39,19 @@ class World {
         }, 100);
     }
 
+    coinsCollision() {
+        setInterval(() => {
+            this.level.coins.forEach((coins, index) => {
+                if (this.character.isColliding(coins)) {
+                    this.coinBar.collectCoin();
+                    this.coinBar.setPercent(this.coinBar.percent);
+                    this.level.coins.splice(index, 1);
 
-    /*  if(charachter.x + charachter.width > chicken.x &&
-            charachter.y + charachter.height > chicken.x &&
-            charachter.x < chicken.x &&
-            charachter.y < chicken + chicken.height
-            )*/
+                }
+            });
+        }, 100);
+    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -52,12 +59,12 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
 
-
-
-        this.addObjectsToMap(this.level.coins);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottels);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+
 
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);

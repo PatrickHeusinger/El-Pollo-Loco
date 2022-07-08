@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -48,6 +49,7 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+
     }
 
 
@@ -70,10 +72,13 @@ class MovableObject extends DrawableObject {
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        if ((this instanceof Character) && images == this.imagesDead && i == images.length - 4) {
+
+        } else {
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }
 
     }
-
 }

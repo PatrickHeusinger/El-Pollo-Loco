@@ -18,5 +18,11 @@ class CoinBar extends StatusBar {
         this.setPercent(0);
     }
 
+    collectCoin() {
+        if (this.percent < 100) {
+            this.percent += 20;
+        }
+    }
+
 
 }

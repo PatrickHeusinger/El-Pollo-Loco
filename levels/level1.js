@@ -5,7 +5,15 @@ const level1 = new Level(
         new Chicken(),
         new Endboss(),
     ], [
-        new Cloud()
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
     ], [
         new Coins(700, 250),
         new Coins(740, 200),
@@ -32,8 +40,11 @@ const level1 = new Level(
         new Coins(2595, 150),
         new Coins(2620, 200),
         new Coins(2640, 250),
-
-
+    ], [
+        new Bottels(900, 80),
+        new Bottels(1300, 80),
+        new Bottels(1700, 80),
+        new Bottels(2100, 80),
     ], [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),

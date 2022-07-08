@@ -3,7 +3,7 @@ class Character extends MovableObject {
     width = 120;
     height = 380;
     x = 100;
-    y = 0;
+    y = 100;
     speed = 10;
 
     imagesWalking = [
@@ -77,8 +77,8 @@ class Character extends MovableObject {
                 this.jump();
             }
 
-
             this.world.cameraX = -this.x + 100;
+
         }, 1000 / 60);
 
         setInterval(() => {
@@ -94,10 +94,8 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesWalking);
                 }
             }
+
         }, 50);
 
     }
-
-
-
 }

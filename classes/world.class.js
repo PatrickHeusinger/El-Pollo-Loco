@@ -11,6 +11,9 @@ class World {
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
     throwableObjects = [];
+    hits = 0;
+
+
 
 
     constructor(canvas, keyboard) {
@@ -23,21 +26,25 @@ class World {
         this.coinsCollision();
         this.bottleCollision();
         this.checkIteration();
+        this.bottleImpact();
 
-    }
+    };
 
     setWorld() {
         this.character.world = this;
-    }
+    };
 
     checkIteration() {
         setInterval(() => {
             this.checkCollisions();
             this.coinsCollision();
             this.bottleCollision();
-            this.checkThrowObjects();
+            this.throwBottle();
+            this.bottleImpact();
+
+
         }, 100);
-    }
+    };
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -45,10 +52,27 @@ class World {
                 this.character.energy -= 5;
                 this.character.isHit();
                 this.statusBar.setPercent(this.character.energy);
-            }
+            };
         });
     };
 
+    bottleImpact() {
+        this.level.enemies.forEach((enemy) => {
+            this.throwableObjects.forEach((bottles) => {
+
+                if (bottles.isColliding(enemy)) {
+                    this.hits += 20;
+                    this.throwableObjects.splice(0, 1);
+
+                    console.log('Hit Enemy :', this.hits);
+
+
+                };
+
+            })
+
+        });
+    };
 
     coinsCollision() {
         this.level.coins.forEach((coins, index) => {
@@ -57,7 +81,7 @@ class World {
                 this.coinBar.setPercent(this.coinBar.percent);
                 this.level.coins.splice(index, 1);
 
-            }
+            };
         });
     };
 
@@ -69,38 +93,48 @@ class World {
                 this.bottleBar.setPercent(this.bottleBar.percent);
                 this.level.bottles.splice(index, 1);
 
+
             };
         });
     };
 
-    checkThrowObjects() {
+
+    throwBottle() {
         if (this.keyboard.D) {
+            console.log(this.keyboard.D);
+            this.bottleBar.percent -= 20;
+            this.bottleBar.setPercent(this.bottleBar.percent);
+            console.log('Percent :', this.bottleBar.percent);
+            this.keyboard.D = false;
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 250);
+            this.throwableObjects.splice(0, 1);
             this.throwableObjects.push(bottle);
+
+
         };
+
     };
+
+
+
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.cameraX, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
-
-        this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-
+        this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
         this.ctx.translate(this.cameraX, 0);
-
         this.ctx.translate(-this.cameraX, 0);
-
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
@@ -113,14 +147,14 @@ class World {
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj)
-        })
+        });
     };
 
 
     addToMap(move) {
         if (move.otherDirection) {
             this.flipImage(move);
-        }
+        };
         move.draw(this.ctx);
         move.drawFrame(this.ctx);
         if (move.otherDirection) {

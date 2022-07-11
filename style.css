@@ -1,9 +1,43 @@
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 canvas {
     background-color: black;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.startDisplay {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.startButton {
+    position: absolute;
+    top: 10%;
+}
+
+.customButton {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: rgb(160, 160, 35);
+}
+
+.startDisplay img {
+    width: 100%;
+    height: 100vh;
 }

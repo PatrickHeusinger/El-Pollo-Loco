@@ -16,7 +16,7 @@ class StatusEndboss extends StatusBar {
         super();
         this.loadImages(this.images);
         this.setPercent(100);
-        this.x = 3450;
+        this.x = 3400;
         this.y = 0;
     };
 

@@ -11,6 +11,12 @@ function init() {
     console.log('My character :', world.character);
 }
 
+function startScreen() {
+    document.getElementById('start').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+
+}
+
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;

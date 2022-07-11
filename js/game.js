@@ -6,14 +6,16 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
 
-    console.log('My character :', world.character);
 }
 
 function startScreen() {
     document.getElementById('start').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
+    initLevel();
+    world = new World(canvas, keyboard);
+
+    console.log('My character :', world.character);
 
 }
 

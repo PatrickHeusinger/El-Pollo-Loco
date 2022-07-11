@@ -14,6 +14,7 @@ class World {
     throwableObjects = [];
     hits = 0;
     endscreen;
+    gameOverSound = new Audio('audio/gameover.mp3');
 
 
 
@@ -121,11 +122,12 @@ class World {
 
 
     gameOver() {
+        this.gameOverSound.play();
         world.keyboard.RIGHT = false;
         world.keyboard.LEFT = false;
         world.keyboard.SPACE = false;
         world.keyboard.D = false;
-    }
+    };
 
 
     draw() {
@@ -146,7 +148,7 @@ class World {
         if (this.endscreen) {
             this.addToMap(this.endscreen);
             this.gameOver();
-        }
+        };
         this.ctx.translate(this.cameraX, 0);
         this.ctx.translate(-this.cameraX, 0);
         let self = this;

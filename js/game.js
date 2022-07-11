@@ -7,7 +7,7 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
 
-}
+};
 
 function startScreen() {
     document.getElementById('start').classList.add('d-none');
@@ -17,7 +17,7 @@ function startScreen() {
 
     console.log('My character :', world.character);
 
-}
+};
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

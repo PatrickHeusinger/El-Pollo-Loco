@@ -7,11 +7,13 @@ class World {
     canvas;
     keyboard;
     cameraX = 0;
+    statusEndboss = new StatusEndboss();
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
     throwableObjects = [];
     hits = 0;
+    endscreen;
 
 
 
@@ -28,6 +30,7 @@ class World {
         this.checkIteration();
         this.bottleImpact();
 
+
     };
 
     setWorld() {
@@ -41,8 +44,6 @@ class World {
             this.bottleCollision();
             this.throwBottle();
             this.bottleImpact();
-
-
         }, 100);
     };
 
@@ -63,7 +64,9 @@ class World {
                 if (bottles.isColliding(enemy)) {
                     this.hits += 20;
                     this.throwableObjects.splice(0, 1);
-
+                    enemy.endBossIsHit();
+                    this.statusEndboss.damageEndboss();
+                    this.statusEndboss.setPercent(this.statusEndboss.percent);
                     console.log('Hit Enemy :', this.hits);
 
 
@@ -100,11 +103,12 @@ class World {
 
 
     throwBottle() {
+        if (this.bottleBar.percent == 0) {
+            world.keyboard.D = false;
+        }
         if (this.keyboard.D) {
-            console.log(this.keyboard.D);
             this.bottleBar.percent -= 20;
             this.bottleBar.setPercent(this.bottleBar.percent);
-            console.log('Percent :', this.bottleBar.percent);
             this.keyboard.D = false;
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 250);
             this.throwableObjects.splice(0, 1);
@@ -116,13 +120,19 @@ class World {
     };
 
 
-
+    gameOver() {
+        world.keyboard.RIGHT = false;
+        world.keyboard.LEFT = false;
+        world.keyboard.SPACE = false;
+        world.keyboard.D = false;
+    }
 
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addToMap(this.statusEndboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
@@ -133,6 +143,10 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
+        if (this.endscreen) {
+            this.addToMap(this.endscreen);
+            this.gameOver();
+        }
         this.ctx.translate(this.cameraX, 0);
         this.ctx.translate(-this.cameraX, 0);
         let self = this;

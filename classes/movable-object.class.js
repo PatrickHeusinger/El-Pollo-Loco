@@ -47,6 +47,16 @@ class MovableObject extends DrawableObject {
         };
     };
 
+    endBossIsHit() {
+        this.energy -= 20;
+        if (this.energy < 0) {
+            this.energy = 0;
+            this.isDead();
+        } else {
+            this.lastHit = new Date().getTime();
+        };
+    }
+
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
@@ -78,9 +88,7 @@ class MovableObject extends DrawableObject {
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
-        if ((this instanceof Character) && images == this.imagesDead && i == images.length - 4) {
-
-        } else {
+        if ((this instanceof Character || this instanceof Endboss) && images == this.imagesDead && i == images.length - 3) {} else {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;

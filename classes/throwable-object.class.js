@@ -48,9 +48,14 @@ class ThrowableObject extends MovableObject {
     };
 
 
+
+
     animate() {
 
+
+
         setInterval(() => {
+            this.playAnimation(this.images);
             if (world.throwBottle()) {
                 this.playAnimation(this.images);
             } else if (world.bottleImpact()) {

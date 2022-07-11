@@ -94,6 +94,9 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
+                setInterval(() => {
+                    world.endscreen = new Endscreen();
+                }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
             } else if (this.isAboveGround()) {

@@ -4,7 +4,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    height: 100vh;
 }
 
 canvas {
@@ -49,7 +50,12 @@ canvas {
     background-color: rgb(252, 222, 123)
 }
 
+.startDisplay {
+    width: 100%;
+    height: 100%;
+}
+
 .startDisplay img {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }

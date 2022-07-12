@@ -29,7 +29,7 @@ class ThrowableObject extends MovableObject {
         this.height = 50;
         this.animate();
         this.throw();
-    };
+    }
 
     throw () {
         this.speedY = 30;
@@ -37,7 +37,7 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.x += 10;
         }, 25);
-    };
+    }
 
     throwLeft() {
         this.speedY = 30;
@@ -45,14 +45,12 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.x -= 10;
         }, 25);
-    };
+    }
 
 
 
 
     animate() {
-
-
 
         setInterval(() => {
             this.playAnimation(this.images);
@@ -63,5 +61,5 @@ class ThrowableObject extends MovableObject {
             }
 
         }, 50);
-    };
-};
+    }
+}

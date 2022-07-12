@@ -7,7 +7,18 @@ function initLevel() {
             new Chicken(),
             new Chicken(),
             new Chicken(),
-            new Endboss(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+
+            new Endboss(400, 380),
+
         ], [
             new Cloud(),
             new Cloud(),
@@ -45,11 +56,14 @@ function initLevel() {
             new Coins(2620, 200),
             new Coins(2640, 250),
         ], [
-            new Bottles(900, 350),
-            new Bottles(1300, 360),
-            new Bottles(1600, 350),
-            new Bottles(2100, 380),
-            new Bottles(2600, 380),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+            new Bottles(),
+
         ], [
             new BackgroundObject('img/5_background/layers/air.png', -719),
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -89,4 +103,4 @@ function initLevel() {
 
         ],
     );
-};
+}

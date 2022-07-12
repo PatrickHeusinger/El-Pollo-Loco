@@ -20,13 +20,13 @@ class StatusBar extends DrawableObject {
         this.y = 40;
         this.width = 170;
         this.height = 50;
-    };
+    }
 
     setPercent(percent) {
         this.percent = percent;
         let path = this.images[this.getImageIndex()];
         this.img = this.imageCache[path];
-    };
+    }
 
     getImageIndex() {
         if (this.percent == 100) {
@@ -42,6 +42,6 @@ class StatusBar extends DrawableObject {
         } else {
             this.percent = 0;
             return 0;
-        };
-    };
-};
+        }
+    }
+}

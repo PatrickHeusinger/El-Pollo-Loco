@@ -18,7 +18,6 @@ class World {
 
 
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -30,13 +29,13 @@ class World {
         this.bottleCollision();
         this.checkIteration();
         this.bottleImpact();
-
-
-    };
+    }
 
     setWorld() {
         this.character.world = this;
-    };
+    }
+
+
 
     checkIteration() {
         setInterval(() => {
@@ -46,7 +45,7 @@ class World {
             this.throwBottle();
             this.bottleImpact();
         }, 100);
-    };
+    }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -54,9 +53,9 @@ class World {
                 this.character.energy -= 5;
                 this.character.isHit();
                 this.statusBar.setPercent(this.character.energy);
-            };
+            }
         });
-    };
+    }
 
     bottleImpact() {
         this.level.enemies.forEach((enemy) => {
@@ -71,12 +70,12 @@ class World {
                     console.log('Hit Enemy :', this.hits);
 
 
-                };
+                }
 
             })
 
         });
-    };
+    }
 
     coinsCollision() {
         this.level.coins.forEach((coins, index) => {
@@ -85,9 +84,9 @@ class World {
                 this.coinBar.setPercent(this.coinBar.percent);
                 this.level.coins.splice(index, 1);
 
-            };
+            }
         });
-    };
+    }
 
 
     bottleCollision() {
@@ -98,9 +97,9 @@ class World {
                 this.level.bottles.splice(index, 1);
 
 
-            };
+            }
         });
-    };
+    }
 
 
     throwBottle() {
@@ -116,9 +115,9 @@ class World {
             this.throwableObjects.push(bottle);
 
 
-        };
+        }
 
-    };
+    }
 
 
     gameOver() {
@@ -127,7 +126,7 @@ class World {
         world.keyboard.LEFT = false;
         world.keyboard.SPACE = false;
         world.keyboard.D = false;
-    };
+    }
 
 
     draw() {
@@ -148,7 +147,7 @@ class World {
         if (this.endscreen) {
             this.addToMap(this.endscreen);
             this.gameOver();
-        };
+        }
         this.ctx.translate(this.cameraX, 0);
         this.ctx.translate(-this.cameraX, 0);
         let self = this;
@@ -157,14 +156,14 @@ class World {
 
         });
 
-    };
+    }
 
 
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj)
         });
-    };
+    }
 
 
     addToMap(move) {
@@ -175,19 +174,20 @@ class World {
         move.drawFrame(this.ctx);
         if (move.otherDirection) {
             this.flipImageBack(move);
-        };
-    };
+        }
+    }
 
     flipImage(move) {
         this.ctx.save();
         this.ctx.translate(move.width, 0);
         this.ctx.scale(-1, 1);
         move.x = move.x * -1;
-    };
+    }
 
 
     flipImageBack(move) {
         move.x = move.x * -1;
         this.ctx.restore();
-    };
-};
+    }
+
+}

@@ -18,9 +18,9 @@ class StatusEndboss extends StatusBar {
         this.setPercent(100);
         this.x = 3400;
         this.y = 0;
-    };
+    }
 
     damageEndboss() {
         this.percent -= 20;
-    };
-};
+    }
+}

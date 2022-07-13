@@ -121,7 +121,7 @@ class World {
 
 
     gameOver() {
-        this.gameOverSound.play();
+        //  this.gameOverSound.play();
         world.keyboard.RIGHT = false;
         world.keyboard.LEFT = false;
         world.keyboard.SPACE = false;

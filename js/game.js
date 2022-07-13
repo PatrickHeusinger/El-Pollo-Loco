@@ -4,31 +4,37 @@ let keyboard = new Keyboard();
 
 
 
+
+
 function init() {
     canvas = document.getElementById('canvas');
 
 }
 
-function startScreen() {
 
+
+function startScreen() {
     setTimeout(() => {
         document.getElementById('start').classList.add('d-none');
         document.getElementById('canvas').classList.remove('d-none');
         document.getElementById('gameCounter').classList.remove('d-none');
+        document.getElementById('highScore').classList.remove('d-none');
         initLevel();
-        start();
         world = new World(canvas, keyboard);
-        checkTimer();
+        start();
+        //  checkTimer();
+
     }, 100);
 }
 
-function checkTimer() {
-    setInterval(() => {
-        if (world.endscreen) {
-            stop();
-        }
-    }, 100);
 
+const checkScore = setInterval(checkTimer, 1000);
+
+function checkTimer() {
+    if (world.endscreen) {
+        stop();
+        console.log(highScore);
+    }
 }
 
 
@@ -86,6 +92,7 @@ let msecVar;
 let secVar;
 let minVar;
 let hourVar;
+let highScore;
 
 function setMSec() {
     if (msec < 10) {
@@ -145,5 +152,16 @@ function start() {
 
 function stop() {
     clearTimeout(msecVar);
+    clearInterval(checkScore);
     timerOn = 0;
+    if (sec == 0 && msec == 0) {
+        sec = sec;
+        msec = msec;
+    } else {
+        sec = sec - 1;
+        msec = msec - 1;
+    }
+    highScore = 'Your Time : ' + sec + ',' + msec + ' Seconds';
+    document.getElementById('highScore').innerHTML = highScore;
+
 }

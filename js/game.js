@@ -11,7 +11,7 @@ function init() {
 
 }
 
-gameStartet = false;
+
 
 function startScreen() {
     setTimeout(() => {
@@ -21,30 +21,22 @@ function startScreen() {
         document.getElementById('highScore').classList.remove('d-none');
         initLevel();
         world = new World(canvas, keyboard);
+        gameStarted = true;;
         start();
 
     }, 100);
 }
 
 const checkScore = setInterval(checkTimer, 1000);
+let gameStarted = false;
 
 function checkTimer() {
-
-    if (startScreen()) {
-        gameStartet = true;
+    if (gameStarted == true) {
+        if (world.endscreen) {
+            stop();
+            console.log(highScore);
+        }
     }
-    if (gameStartet == true) {
-        checkScore;
-    }
-    if (gameStartet == false) {
-        clearInterval(checkScore);
-    }
-    if (world.endscreen) {
-        stop();
-        console.log(highScore);
-    }
-
-
 }
 
 
@@ -178,5 +170,4 @@ function stop() {
     }
     highScore = 'Your Time : ' + sec + ',' + msec + ' Seconds';
     document.getElementById('highScore').innerHTML = highScore;
-
 }

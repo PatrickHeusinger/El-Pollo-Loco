@@ -7,7 +7,8 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 100vh;
     position: relative;
-    background-color: rgb(255, 218, 0);
+    background-image: url('img/5_background/backgroundMainImage.jpg');
+    background-position: center;
 }
 
 canvas {
@@ -33,9 +34,11 @@ canvas {
 .manual {
     position: absolute;
     bottom: 5%;
-    color: white;
+    color: rgb(255, 187, 0);
+    -webkit-text-stroke: 2px rgb(160, 34, 10);
     font-weight: bold;
     font-size: 25px;
+    letter-spacing: 1px;
 }
 
 .customButton {
@@ -44,7 +47,7 @@ canvas {
     background-color: rgb(255, 218, 0);
     padding: 20px;
     border-radius: 15px;
-    border: none;
+    border: 3px solid rgb(160, 34, 10);
     cursor: pointer;
 }
 
@@ -76,7 +79,8 @@ canvas {
     padding-top: 20px;
     font-size: 40px;
     font-weight: bold;
-    color: rgb(160, 34, 10);
+    color: rgb(255, 187, 0);
+    -webkit-text-stroke: 2px rgb(160, 34, 10);
 }
 
 .container {
@@ -93,10 +97,10 @@ canvas {
     align-items: center;
     justify-content: center;
     font-size: 3rem;
-    border: 5px solid rgb(160, 34, 10);
+    border: 5px solid white;
     border-radius: 15px;
     padding: 0.5rem 1rem;
-    color: rgb(160, 34, 10);
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -130,6 +134,8 @@ canvas {
 @media only screen and (max-width: 900px) {
     .manual {
         font-size: 14px;
+        color: white;
+        -webkit-text-stroke: 1px white;
     }
 }
 

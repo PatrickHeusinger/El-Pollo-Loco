@@ -20,46 +20,59 @@ class ThrowableObject extends MovableObject {
 
 
     constructor(x, y) {
-        super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
-        this.loadImages(this.images);
-        this.loadImages(this.imagesImpact);
-        this.x = x;
-        this.y = y;
-        this.width = 50;
-        this.height = 50;
-        this.animate();
-        this.throw();
-    }
+            super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+            this.loadImages(this.images);
+            this.loadImages(this.imagesImpact);
+            this.x = x;
+            this.y = y;
+            this.width = 50;
+            this.height = 50;
+            this.animate();
+            this.throw();
+        }
+        /*
+            throw () {
+                this.speedY = 30;
+                this.applyGravity();
+                setInterval(() => {
+                    this.x += 10;
+                }, 25);
+            }
+        */
 
     throw () {
+        let throwLeft;
         this.speedY = 30;
         this.applyGravity();
+
+        if (world.character.otherDirection) {
+            throwLeft = true;
+        }
+
         setInterval(() => {
-            this.x += 10;
-        }, 25);
+            if (this.isAboveGround()) {
+                if (!throwLeft) {
+                    this.x += 10;
+                } else {
+                    this.x -= 10;
+                }
+            }
+        }, 1000 / 60);
     }
-
-    throwLeft() {
-        this.speedY = 30;
-        this.applyGravity();
-        setInterval(() => {
-            this.x -= 10;
-        }, 25);
-    }
-
-
-
 
     animate() {
 
         setInterval(() => {
-            this.playAnimation(this.images);
+            //   this.playAnimation(this.images);
             if (world.throwBottle()) {
                 this.playAnimation(this.images);
             } else if (world.bottleImpact()) {
                 this.playAnimation(this.imagesImpact);
             }
 
+
         }, 50);
     }
+
+
 }

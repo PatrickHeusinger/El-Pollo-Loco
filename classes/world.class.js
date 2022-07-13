@@ -126,6 +126,8 @@ class World {
         world.keyboard.LEFT = false;
         world.keyboard.SPACE = false;
         world.keyboard.D = false;
+        this.character.throwSound.pause();
+
     }
 
 

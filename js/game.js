@@ -1,16 +1,13 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
-
-
+let gameStarted = false;
 
 
 function init() {
     canvas = document.getElementById('canvas');
 
 }
-
 
 
 function startScreen() {
@@ -21,14 +18,14 @@ function startScreen() {
         document.getElementById('highScore').classList.remove('d-none');
         initLevel();
         world = new World(canvas, keyboard);
-        gameStarted = true;;
+        gameStarted = true;
         start();
 
     }, 100);
 }
 
+
 const checkScore = setInterval(checkTimer, 1000);
-let gameStarted = false;
 
 function checkTimer() {
     if (gameStarted == true) {
@@ -38,11 +35,6 @@ function checkTimer() {
         }
     }
 }
-
-
-
-
-
 
 
 window.addEventListener("keydown", (e) => {

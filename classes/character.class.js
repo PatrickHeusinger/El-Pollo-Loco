@@ -47,7 +47,7 @@ class Character extends MovableObject {
     world;
     walkingSound = new Audio('audio/running.mp3');
     jumpSound = new Audio('audio/jump.mp3');
-    throwSound = new Audio('audio/throw.mp3');
+    throwSound = new Audio('audio/throw-2.mp3');
 
 
     constructor() {
@@ -58,6 +58,8 @@ class Character extends MovableObject {
         this.loadImages(this.imagesHurt);
         this.applyGravity();
         this.animate();
+        this.jumpSound.volume = 0.1;
+        this.walkingSound.volume = 0.5;
     }
 
     animate() {

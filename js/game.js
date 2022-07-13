@@ -11,7 +11,7 @@ function init() {
 
 }
 
-
+gameStartet = false;
 
 function startScreen() {
     setTimeout(() => {
@@ -22,20 +22,35 @@ function startScreen() {
         initLevel();
         world = new World(canvas, keyboard);
         start();
-        //  checkTimer();
 
     }, 100);
 }
 
-
 const checkScore = setInterval(checkTimer, 1000);
 
 function checkTimer() {
+
+    if (startScreen()) {
+        gameStartet = true;
+    }
+    if (gameStartet == true) {
+        checkScore;
+    }
+    if (gameStartet == false) {
+        clearInterval(checkScore);
+    }
     if (world.endscreen) {
         stop();
         console.log(highScore);
     }
+
+
 }
+
+
+
+
+
 
 
 window.addEventListener("keydown", (e) => {

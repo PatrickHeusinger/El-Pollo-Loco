@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
 
 
 
-    images = [
+    imagesThrow = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
@@ -20,25 +20,17 @@ class ThrowableObject extends MovableObject {
 
 
     constructor(x, y) {
-            super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
-            this.loadImages(this.images);
-            this.loadImages(this.imagesImpact);
-            this.x = x;
-            this.y = y;
-            this.width = 50;
-            this.height = 50;
-            this.animate();
-            this.throw();
-        }
-        /*
-            throw () {
-                this.speedY = 30;
-                this.applyGravity();
-                setInterval(() => {
-                    this.x += 10;
-                }, 25);
-            }
-        */
+        super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+        this.loadImages(this.imagesThrow);
+        this.loadImages(this.imagesImpact);
+        this.x = x;
+        this.y = y;
+        this.width = 50;
+        this.height = 50;
+        this.animate();
+        this.throw();
+    }
+
 
     throw () {
         let throwLeft;
@@ -63,16 +55,12 @@ class ThrowableObject extends MovableObject {
     animate() {
 
         setInterval(() => {
-            //   this.playAnimation(this.images);
+            this.playAnimation(this.imagesThrow);
             if (world.throwBottle()) {
-                this.playAnimation(this.images);
+                this.playAnimation(this.imagesThrow);
             } else if (world.bottleImpact()) {
                 this.playAnimation(this.imagesImpact);
             }
-
-
         }, 50);
     }
-
-
 }

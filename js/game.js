@@ -160,6 +160,8 @@ function stop() {
         sec = sec - 1;
         msec = msec - 1;
     }
+
     highScore = 'Your Time : ' + sec + ',' + msec + ' Seconds';
+    document.getElementById('highScore').innerHTML = '';
     document.getElementById('highScore').innerHTML = highScore;
 }

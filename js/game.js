@@ -24,6 +24,15 @@ function startScreen() {
     }, 100);
 }
 
+function restartGame() {
+    document.getElementById('restartButton').classList.add('d-none');
+    document.getElementById('start').classList.remove('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('gameCounter').classList.add('d-none');
+    document.getElementById('highScore').classList.add('d-none');
+    location.reload();
+}
+
 
 const checkScore = setInterval(checkTimer, 1000);
 
@@ -31,6 +40,7 @@ function checkTimer() {
     if (gameStarted == true) {
         if (world.endscreen) {
             stop();
+
             console.log(highScore);
         }
     }
@@ -161,7 +171,8 @@ function stop() {
         msec = msec - 1;
     }
 
-    highScore = 'Your Time : ' + sec + ',' + msec + ' Seconds';
+    highScore = 'YOUR TIME : ' + sec + ',' + msec + ' SECONDS';
     document.getElementById('highScore').innerHTML = '';
     document.getElementById('highScore').innerHTML = highScore;
+    document.getElementById('restartButton').classList.remove('d-none');
 }

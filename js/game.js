@@ -2,7 +2,8 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameStarted = false;
-
+let backgroundSound = new Audio('audio/backgroundSound.mp3');
+backgroundSound.volume = 0.1;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -19,6 +20,7 @@ function startScreen() {
         initLevel();
         world = new World(canvas, keyboard);
         gameStarted = true;
+        backgroundSound.play();
         start();
 
     }, 100);
@@ -170,7 +172,7 @@ function stop() {
         sec = sec - 1;
         msec = msec - 1;
     }
-
+    backgroundSound.pause();
     highScore = 'YOUR TIME : ' + sec + ',' + msec + ' SECONDS';
     document.getElementById('highScore').innerHTML = '';
     document.getElementById('highScore').innerHTML = highScore;

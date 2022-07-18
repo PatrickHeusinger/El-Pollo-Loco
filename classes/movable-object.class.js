@@ -15,7 +15,6 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
-
     }
 
     isAboveGround() {
@@ -25,7 +24,6 @@ class MovableObject extends DrawableObject {
             return this.y < 80
         }
     }
-
 
 
     isColliding(move) {
@@ -63,20 +61,17 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
-
     }
 
 
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-
     }
 
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
-
     }
 
     jump() {
@@ -93,6 +88,5 @@ class MovableObject extends DrawableObject {
             this.img = this.imageCache[path];
             this.currentImage++;
         }
-
     }
 }

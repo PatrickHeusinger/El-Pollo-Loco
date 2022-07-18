@@ -18,6 +18,7 @@ class World {
 
 
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -36,7 +37,6 @@ class World {
     }
 
 
-
     checkIteration() {
         setInterval(() => {
             this.checkCollisions();
@@ -46,6 +46,7 @@ class World {
             this.bottleImpact();
         }, 100);
     }
+
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -60,7 +61,6 @@ class World {
     bottleImpact() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObjects.forEach((bottles) => {
-
                 if (bottles.isColliding(enemy)) {
                     this.hits += 20;
                     this.throwableObjects.splice(0, 1);
@@ -68,12 +68,8 @@ class World {
                     this.statusEndboss.damageEndboss();
                     this.statusEndboss.setPercent(this.statusEndboss.percent);
                     console.log('Hit Enemy :', this.hits);
-
-
                 }
-
             })
-
         });
     }
 
@@ -83,7 +79,6 @@ class World {
                 this.coinBar.collectCoin();
                 this.coinBar.setPercent(this.coinBar.percent);
                 this.level.coins.splice(index, 1);
-
             }
         });
     }
@@ -95,8 +90,6 @@ class World {
                 this.bottleBar.collectBottles();
                 this.bottleBar.setPercent(this.bottleBar.percent);
                 this.level.bottles.splice(index, 1);
-
-
             }
         });
     }
@@ -113,21 +106,18 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 250);
             this.throwableObjects.splice(0, 1);
             this.throwableObjects.push(bottle);
-
-
         }
-
     }
 
 
     gameOver() {
+        setInterval(() => {
+            world.keyboard.RIGHT = false;
+            world.keyboard.LEFT = false;
+            world.keyboard.SPACE = false;
+            world.keyboard.D = false;
+        }, 16);
         //  this.gameOverSound.play();
-        world.keyboard.RIGHT = false;
-        world.keyboard.LEFT = false;
-        world.keyboard.SPACE = false;
-        world.keyboard.D = false;
-        this.character.throwSound.pause();
-
     }
 
 

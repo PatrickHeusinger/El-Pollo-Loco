@@ -1,11 +1,15 @@
 class Character extends MovableObject {
 
-    width = 100;
+    width = 120;
     height = 380;
     x = 100;
     y = 80;
     speed = 10;
     await = 1;
+    world;
+    walkingSound = new Audio('audio/running.mp3');
+    jumpSound = new Audio('audio/jump.mp3');
+    // throwSound = new Audio('audio/throw-2.mp3');
 
     imagesWalking = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -72,11 +76,6 @@ class Character extends MovableObject {
         './img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
-    world;
-    walkingSound = new Audio('audio/running.mp3');
-    jumpSound = new Audio('audio/jump.mp3');
-    throwSound = new Audio('audio/throw-2.mp3');
-
 
     constructor() {
         super().loadImage(this.imagesWalking[0]);
@@ -95,10 +94,6 @@ class Character extends MovableObject {
 
 
     animate() {
-
-
-
-
 
         setInterval(() => {
             this.walkingSound.pause();
@@ -119,21 +114,24 @@ class Character extends MovableObject {
                 this.jumpSound.play();
             }
 
-            if (this.world.keyboard.D) {
-                this.throwSound.play();
-            }
+            //      if (this.world.keyboard.D == true) {
+            //          this.throwSound.pause();
+            //          this.throwSound.currentTime = 0;
+            //          this.throwSound.play();
+            //      }
 
             this.world.cameraX = -this.x + 100;
 
         }, 1000 / 60);
 
-        setInterval(() => {
+        const stopInterval = setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
                 setInterval(() => {
                     world.endscreen = new Endscreen();
                 }, 500);
+                clearInterval(stopInterval);
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
                 this.await = 1;

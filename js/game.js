@@ -4,6 +4,9 @@ let keyboard = new Keyboard();
 let gameStarted = false;
 let backgroundSound = new Audio('audio/backgroundSound.mp3');
 backgroundSound.volume = 0.1;
+arribaSound = new Audio('audio/Yeehah Arriva.mp3');
+
+
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -14,6 +17,7 @@ function init() {
 function startScreen() {
     setTimeout(() => {
         document.getElementById('start').classList.add('d-none');
+        document.getElementById('manual').classList.add('d-none');
         document.getElementById('canvas').classList.remove('d-none');
         document.getElementById('gameCounter').classList.remove('d-none');
         document.getElementById('highScore').classList.remove('d-none');
@@ -29,6 +33,7 @@ function startScreen() {
 function restartGame() {
     document.getElementById('restartButton').classList.add('d-none');
     document.getElementById('start').classList.remove('d-none');
+    document.getElementById('manual').classList.remove('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('gameCounter').classList.add('d-none');
     document.getElementById('highScore').classList.add('d-none');
@@ -173,8 +178,8 @@ function stop() {
         msec = msec - 1;
     }
     backgroundSound.pause();
-    highScore = 'YOUR TIME : ' + sec + ',' + msec + ' SECONDS';
-    document.getElementById('highScore').innerHTML = '';
-    document.getElementById('highScore').innerHTML = highScore;
+    //  highScore = 'YOUR TIME : ' + sec + ',' + msec + ' SECONDS';
+    //  document.getElementById('highScore').innerHTML = '';
+    //  document.getElementById('highScore').innerHTML = highScore;
     document.getElementById('restartButton').classList.remove('d-none');
 }

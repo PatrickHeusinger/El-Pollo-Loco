@@ -18,6 +18,7 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ];
 
+    throwSound = new Audio('audio/throw-2.mp3');
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
@@ -36,7 +37,7 @@ class ThrowableObject extends MovableObject {
         let throwLeft;
         this.speedY = 30;
         this.applyGravity();
-
+        this.throwSound.play();
         if (world.character.otherDirection) {
             throwLeft = true;
         }

@@ -117,7 +117,7 @@ class World {
             world.keyboard.SPACE = false;
             world.keyboard.D = false;
         }, 16);
-        //  this.gameOverSound.play();
+        this.gameOverSound.play();
     }
 
 

@@ -47,8 +47,6 @@ function checkTimer() {
     if (gameStarted == true) {
         if (world.endscreen) {
             stop();
-
-            console.log(highScore);
         }
     }
 }

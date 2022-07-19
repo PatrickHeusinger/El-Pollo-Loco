@@ -90,6 +90,7 @@ class Character extends MovableObject {
         this.animate();
         this.jumpSound.volume = 0.1;
         this.walkingSound.volume = 0.5;
+        this.gameOverSound.volume = 0.1;
     }
 
     /**

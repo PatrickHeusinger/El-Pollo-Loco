@@ -21,7 +21,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Check if the character is in the air or on ground
-     * @returns 
+     * @returns false or true
      */
 
     isAboveGround() {
@@ -34,7 +34,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Check the frames between character and enemies are coliding
-     * @param {*} move 
+     * @param {move} move from the objects
      * @returns 
      */
 
@@ -76,7 +76,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Check if endboss is hitten and animate endboss is hurt
-     * @returns 
+     * @returns the time has passed
      */
 
     isHurt() {
@@ -87,7 +87,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Check if endboss is dead
-     * @returns 
+     * @returns energy level
      */
 
     isDead() {
@@ -114,7 +114,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Check animations and stop it when character or endboss is dead
-     * @param {*} images 
+     * @param {images} images from the arrays to animate
      */
 
     playAnimation(images) {

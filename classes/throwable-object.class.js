@@ -21,8 +21,8 @@ class ThrowableObject extends MovableObject {
     /**
      * Animate the throwing bottle rotation 
      * Set the x and y from the character coordinates
-     * @param {*} x 
-     * @param {*} y 
+     * @param {x} x coordinates
+     * @param {y} y coordinates
      */
 
     constructor(x, y) {

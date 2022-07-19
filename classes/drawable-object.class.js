@@ -10,7 +10,7 @@ class DrawableObject {
 
     /**
      * Load the first image
-     * @param {*} path 
+     * @param {path} path of image
      */
 
 
@@ -21,7 +21,7 @@ class DrawableObject {
 
     /**
      * Drawing everything in the canvas
-     * @param {*} ctx 
+     * @param {ctx} ctx context 
      */
 
     draw(ctx) {
@@ -30,7 +30,7 @@ class DrawableObject {
 
     /**
      * Draw the colision frame
-     * @param {*} ctx 
+     * @param {ctx} ctx context
      */
 
     drawFrame(ctx) {
@@ -45,7 +45,7 @@ class DrawableObject {
 
     /**
      * Loading function for the animation images
-     * @param {*} array 
+     * @param {array} array from images
      */
 
     loadImages(array) {

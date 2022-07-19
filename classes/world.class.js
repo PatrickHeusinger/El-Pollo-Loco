@@ -18,8 +18,8 @@ class World {
 
     /**
      * Set the world and check everything in the whole game
-     * @param {*} canvas 
-     * @param {*} keyboard 
+     * @param {canvas} canvas for the whole game access
+     * @param {keyboard} keyboard for the whole game access
      */
 
     constructor(canvas, keyboard) {
@@ -192,7 +192,7 @@ class World {
 
     /**
      * Add objects to the canvas draw method
-     * @param {*} objects 
+     * @param {objects} objects access to the whole game
      */
 
     addObjectsToMap(objects) {
@@ -204,7 +204,7 @@ class World {
 
     /**
      * Draw the Images an check if character is walking right or left
-     * @param {*} move 
+     * @param {move} move access to the whole game
      */
 
     addToMap(move) {
@@ -220,7 +220,7 @@ class World {
 
     /**
      * Flip image when character change the direction
-     * @param {*} move 
+     * @param {move} move to check if the image is moved to the other direction
      */
 
     flipImage(move) {
@@ -233,7 +233,7 @@ class World {
 
     /**
      * Flip image back when character change the direction back
-     * @param {*} move 
+     * @param {move} move to flip image back when direction is changed back
      */
 
     flipImageBack(move) {

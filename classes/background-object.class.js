@@ -5,8 +5,8 @@ class BackgroundObject extends MovableObject {
 
     /** 
      * - Draw canvas and backgrounds
-     * @param {*} imagePath 
-     * @param {*} x 
+     * @param {imagePath} imagePath path
+     * @param {x} x coordinates
      */
 
     constructor(imagePath, x) {

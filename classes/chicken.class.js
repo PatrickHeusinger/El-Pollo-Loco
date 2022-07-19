@@ -11,8 +11,8 @@ class Chicken extends MovableObject {
 
     /**
      * Load the little chickens random 
-     * @param {*} x 
-     * @param {*} y 
+     * @param {x} coordinates
+     * @param {y} coordinates
      */
 
     constructor(x, y) {

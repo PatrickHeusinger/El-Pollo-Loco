@@ -2,11 +2,8 @@ class Endboss extends MovableObject {
 
     height = 500;
     width = 300;
-
     y = -10;
-
-
-
+    winnerSound = new Audio('audio/Yeehah Arriva.mp3');
 
 
     imagesAlert = [
@@ -51,7 +48,6 @@ class Endboss extends MovableObject {
     ];
 
 
-
     constructor() {
         super().loadImage(this.imagesAlert[0]);
         this.loadImages(this.imagesAlert);
@@ -63,17 +59,23 @@ class Endboss extends MovableObject {
 
     }
 
+    /**
+     * Load the endboss and theit animation
+     */
 
 
     animate() {
 
-        setInterval(() => {
+        const stopSound = setInterval(() => {
 
             if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt && this.imagesWalk && this.imagesAttack);
                 this.x -= 20;
+
             } else if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
+                this.winnerSound.play();
+                clearInterval(stopSound);
                 setInterval(() => {
                     world.endscreen = new Endscreen();
                 }, 1000);

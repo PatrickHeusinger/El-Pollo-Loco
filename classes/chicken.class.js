@@ -9,6 +9,11 @@ class Chicken extends MovableObject {
     ];
 
 
+    /**
+     * Load the little chickens random 
+     * @param {*} x 
+     * @param {*} y 
+     */
 
     constructor(x, y) {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -21,6 +26,10 @@ class Chicken extends MovableObject {
         this.animate();
 
     }
+
+    /**
+     * Animate the chickens to walking left only
+     */
 
     animate() {
         setInterval(() => {

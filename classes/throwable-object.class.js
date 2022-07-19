@@ -1,7 +1,5 @@
 class ThrowableObject extends MovableObject {
 
-
-
     imagesThrow = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -19,6 +17,13 @@ class ThrowableObject extends MovableObject {
     ];
 
     throwSound = new Audio('audio/throw-2.mp3');
+
+    /**
+     * Animate the throwing bottle rotation 
+     * Set the x and y from the character coordinates
+     * @param {*} x 
+     * @param {*} y 
+     */
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');

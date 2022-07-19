@@ -1,7 +1,6 @@
 class StatusEndboss extends StatusBar {
 
 
-
     images = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png',
@@ -9,8 +8,11 @@ class StatusEndboss extends StatusBar {
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/60.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/80.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png',
-
     ];
+
+    /**
+     * Statusbar of the energy level from endboss
+     */
 
     constructor() {
         super();
@@ -22,5 +24,9 @@ class StatusEndboss extends StatusBar {
 
     damageEndboss() {
         this.percent -= 20;
+        setTimeout(() => {
+            this.x -= 120;
+        }, 400);
+
     }
 }

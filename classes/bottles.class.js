@@ -10,7 +10,9 @@ class Bottles extends MovableObject {
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ];
 
-
+    /**
+     * Load bottles on ground and to distribute random
+     */
 
     constructor() {
 

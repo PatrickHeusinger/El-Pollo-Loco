@@ -3,11 +3,13 @@ class Endscreen extends MovableObject {
     width = 720;
     height = 480;
 
+    /**
+     * Load the endscreen
+     */
+
     constructor() {
         super().loadImage('img/9_intro_outro_screens/game_over/game over.png');
         this.x = 0;
         this.y = 0;
     }
-
-
 }

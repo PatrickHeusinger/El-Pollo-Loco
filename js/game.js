@@ -6,13 +6,18 @@ let backgroundSound = new Audio('audio/backgroundSound.mp3');
 backgroundSound.volume = 0.1;
 arribaSound = new Audio('audio/Yeehah Arriva.mp3');
 
-
+/**
+ * Init the game 
+ */
 
 function init() {
     canvas = document.getElementById('canvas');
-
 }
 
+
+/**
+ * Remove startscreen 
+ */
 
 function startScreen() {
     setTimeout(() => {
@@ -30,6 +35,10 @@ function startScreen() {
     }, 100);
 }
 
+/**
+ * Remove endscreen and load a new game
+ */
+
 function restartGame() {
     document.getElementById('restartButton').classList.add('d-none');
     document.getElementById('start').classList.remove('d-none');
@@ -40,6 +49,9 @@ function restartGame() {
     location.reload();
 }
 
+/**
+ * Check your game time and stop intervals
+ */
 
 const checkScore = setInterval(checkTimer, 1000);
 
@@ -51,6 +63,9 @@ function checkTimer() {
     }
 }
 
+/**
+ * Keyboard controls
+ */
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

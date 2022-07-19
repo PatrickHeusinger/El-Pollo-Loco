@@ -14,10 +14,13 @@ class World {
     throwableObjects = [];
     hits = 0;
     endscreen;
-    gameOverSound = new Audio('audio/gameover.mp3');
 
 
-
+    /**
+     * Set the world and check everything in the whole game
+     * @param {*} canvas 
+     * @param {*} keyboard 
+     */
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -37,6 +40,10 @@ class World {
     }
 
 
+    /**
+     * Check all intervals with 100ms
+     */
+
     checkIteration() {
         setInterval(() => {
             this.checkCollisions();
@@ -48,6 +55,11 @@ class World {
     }
 
 
+    /**
+     * Check collisions between character and enemy 
+     * Negate the energy level after collision
+     */
+
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -57,6 +69,11 @@ class World {
             }
         });
     }
+
+
+    /**
+     * Check if a bootle has an impact
+     */
 
     bottleImpact() {
         this.level.enemies.forEach((enemy) => {
@@ -73,6 +90,12 @@ class World {
         });
     }
 
+
+    /**
+     * Check if character have an collision with a coin 
+     * and splice the coin from the canvas
+     */
+
     coinsCollision() {
         this.level.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
@@ -84,6 +107,11 @@ class World {
     }
 
 
+    /**
+     * Check collision between character and bottle 
+     * and set percent in the bottlebar
+     */
+
     bottleCollision() {
         this.level.bottles.forEach((bottles, index) => {
             if (this.character.isColliding(bottles)) {
@@ -94,6 +122,10 @@ class World {
         });
     }
 
+
+    /**
+     * Check when a bottle is throwing and set percentage from the bootle bar 
+     */
 
     throwBottle() {
         if (this.bottleBar.percent == 0) {
@@ -110,6 +142,10 @@ class World {
     }
 
 
+    /**
+     * Lock the keyboard when game is over
+     */
+
     gameOver() {
         setInterval(() => {
             world.keyboard.RIGHT = false;
@@ -117,9 +153,13 @@ class World {
             world.keyboard.SPACE = false;
             world.keyboard.D = false;
         }, 16);
-        this.gameOverSound.play();
+
     }
 
+
+    /**
+     * Draw the whole canvas content 
+     */
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -147,9 +187,13 @@ class World {
             self.draw();
 
         });
-
     }
 
+
+    /**
+     * Add objects to the canvas draw method
+     * @param {*} objects 
+     */
 
     addObjectsToMap(objects) {
         objects.forEach(obj => {
@@ -157,6 +201,11 @@ class World {
         });
     }
 
+
+    /**
+     * Draw the Images an check if character is walking right or left
+     * @param {*} move 
+     */
 
     addToMap(move) {
         if (move.otherDirection) {
@@ -169,6 +218,11 @@ class World {
         }
     }
 
+    /**
+     * Flip image when character change the direction
+     * @param {*} move 
+     */
+
     flipImage(move) {
         this.ctx.save();
         this.ctx.translate(move.width, 0);
@@ -177,9 +231,13 @@ class World {
     }
 
 
+    /**
+     * Flip image back when character change the direction back
+     * @param {*} move 
+     */
+
     flipImageBack(move) {
         move.x = move.x * -1;
         this.ctx.restore();
     }
-
 }

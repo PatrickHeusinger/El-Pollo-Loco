@@ -1,5 +1,9 @@
 let level1;
 
+/**
+ * Load the images up into the canvas
+ */
+
 function initLevel() {
 
     level1 = new Level(

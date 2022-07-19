@@ -12,6 +12,11 @@ class StatusBar extends DrawableObject {
 
     ];
 
+    /**
+     * Show statusbar and animate the level 
+     * This extends with all bars in the whole game
+     */
+
     constructor() {
         super();
         this.loadImages(this.images);

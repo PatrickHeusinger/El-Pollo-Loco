@@ -6,7 +6,9 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-
+    /**
+     * Simulate the gravity when the character is jumping
+     */
 
     applyGravity() {
         setInterval(() => {
@@ -17,6 +19,11 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Check if the character is in the air or on ground
+     * @returns 
+     */
+
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -25,6 +32,12 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Check the frames between character and enemies are coliding
+     * @param {*} move 
+     * @returns 
+     */
+
 
     isColliding(move) {
         return this.x + this.width > move.x &&
@@ -32,6 +45,10 @@ class MovableObject extends DrawableObject {
             this.x < move.x &&
             this.y < move.y + move.height;
     }
+
+    /**
+     * Check if enemy is hitten and negate the energy level from character
+     */
 
     isHit() {
         this.energy -= 5;
@@ -43,6 +60,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Check if endboss is hitten and negate the energy level
+     */
+
     endBossIsHit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -53,16 +74,29 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Check if endboss is hitten and animate endboss is hurt
+     * @returns 
+     */
+
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 0.5;
     }
 
+    /**
+     * Check if endboss is dead
+     * @returns 
+     */
+
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * Controll the moving directions
+     */
 
     moveRight() {
         this.x += this.speed;
@@ -78,6 +112,10 @@ class MovableObject extends DrawableObject {
         this.speedY = 30;
     }
 
+    /**
+     * Check animations and stop it when character or endboss is dead
+     * @param {*} images 
+     */
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

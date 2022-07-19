@@ -6,3 +6,7 @@ class Keyboard {
     SPACE = false;
     D = false;
 }
+
+/**
+ * Keyboard occupancy
+ */

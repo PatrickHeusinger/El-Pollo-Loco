@@ -9,6 +9,8 @@ class Character extends MovableObject {
     world;
     walkingSound = new Audio('audio/running.mp3');
     jumpSound = new Audio('audio/jump.mp3');
+    gameOverSound = new Audio('audio/gameover.mp3');
+
     // throwSound = new Audio('audio/throw-2.mp3');
 
     imagesWalking = [
@@ -91,6 +93,9 @@ class Character extends MovableObject {
         this.walkingSound.volume = 0.5;
     }
 
+    /**
+     * Load moving animations and sounds
+     */
 
 
     animate() {
@@ -114,20 +119,21 @@ class Character extends MovableObject {
                 this.jumpSound.play();
             }
 
-            //      if (this.world.keyboard.D == true) {
-            //          this.throwSound.pause();
-            //          this.throwSound.currentTime = 0;
-            //          this.throwSound.play();
-            //      }
-
             this.world.cameraX = -this.x + 100;
 
         }, 1000 / 60);
+
+        /**
+         * Load diffrent images and actions from the character
+         * Loading the endscreen when the character is dead
+         * Stop intervals with the endscreen
+         */
 
         const stopInterval = setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
+                this.gameOverSound.play();
                 setInterval(() => {
                     world.endscreen = new Endscreen();
                 }, 500);
@@ -151,8 +157,11 @@ class Character extends MovableObject {
             }
 
         }, 50);
-
     }
+
+    /**
+     * Load the sleeping animation when the character isn`t moving for a while
+     */
 
     awaitKeyboard() {
         this.await++;

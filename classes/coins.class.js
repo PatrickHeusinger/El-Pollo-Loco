@@ -10,8 +10,8 @@ class Coins extends MovableObject {
 
     /**
      * Load the coin image
-     * @param {x} x coordinates
-     * @param {y} y coordinates
+     * @param {number} x declare the coordinates
+     * @param {number} y declare the coordinates
      */
 
     constructor(x, y) {

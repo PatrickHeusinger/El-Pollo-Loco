@@ -8,11 +8,11 @@ class Level {
 
     /**
      * Constructor of the level
-     * @param {enemies} enemies in this level
-     * @param {clouds} clouds in this level
-     * @param {coins} coins in this level
-     * @param {bottles} bottles in this level
-     * @param {backgroundObjects} backgroundObjects in this level
+     * @param {array} enemies images in this level
+     * @param {array} clouds images in this level
+     * @param {array} coins images in this level
+     * @param {array} bottles images in this level
+     * @param {array} backgroundObjects images in this level
      */
 
     constructor(enemies, clouds, coins, bottles, backgroundObjects) {

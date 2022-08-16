@@ -57,7 +57,6 @@ class Endboss extends MovableObject {
         this.x = 3300;
         this.animate();
         this.winnerSound.volume = 0.3;
-
     }
 
     /**
@@ -84,7 +83,5 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.imagesAlert);
             };
         }, 100);
-
-
     }
 }

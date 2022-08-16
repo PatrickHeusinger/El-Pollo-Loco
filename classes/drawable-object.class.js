@@ -29,7 +29,7 @@ class DrawableObject {
     }
 
     /**
-     * Draw the colision frame
+     * Draw the collision frame
      * @param {number} ctx context of content
      */
 
